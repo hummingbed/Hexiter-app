@@ -193,4 +193,42 @@ export default {
 .right-component p {
   font-size: 23px;
 }
+
+
+@media only screen and (min-width: 769px){
+  .right-component p {
+    font-size: 11px;
+  }
+
+  .cards img {
+    height: 250px;
+    margin-top: 0px;
+  }
+}
+
+@media only screen and (min-width: 871px){
+  .right-component p {
+    font-size: 15px;
+  }
+
+  .cards img {
+    height: 250px;
+    margin-bottom: 0px;
+  }
+}
+
+@media only screen and (min-width: 1027px){
+  .cards img {
+    height: 300px;
+    margin-top: 30px;
+  }
+  
+  .right-component p {
+    font-size: 23px;
+  }
+}
+
+
+
+
 </style>
