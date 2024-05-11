@@ -123,23 +123,16 @@ export default {
 
 
       this.spinVisiblilty = true;
-      axios.get('http://ip-api.com/json/24.48.0.1')
+      axios.get('https://api.ipify.org/?format=json')
         .then(response => {
-          console.log('Response:', response.data);
-          if (response.data.status == 'success') {
+          console.log('Response:', response.data.ip);
+          if (response.data.ip) {
             const locationString = `
-                country: "${response.data.country}",
-                countryCode: "${response.data.countryCode}",
-                region: "${response.data.region}",
-                regionName: "${response.data.regionName}",
-                city: "${response.data.city}",
-                zip: "${response.data.zip}",
-                lat: ${response.data.lat},
-                lon: ${response.data.lon}
+                your Ip address is: "${response.data.ip}",
               `;
-            this.apiData = response.data.status;
+            
             this.$swal.fire({
-              title: this.apiData,
+              title: 'success',
               text: locationString,
               $showClass: {
                 popup: `
