@@ -32,9 +32,10 @@
 
               <div class="col-12">
                 <div class="d-grid">
-                  <button :disabled="!isFormValid" type="submit" class="btn btn-primary btn bsb-btn-xl btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <button :disabled="!isFormValid" type="submit" class="btn btn-primary btn bsb-btn-xl btn-danger">
                     Sign In
-                    <div v-if="spinVisiblilty" class="spinner-border text-secondary" role="status" style="width: 1.5rem; height: 1.5rem;">
+                    <div v-if="spinVisiblilty" class="spinner-border text-secondary" role="status"
+                      style="width: 1.5rem; height: 1.5rem;">
                       <span class="visually-hidden">Loading...</span>
                     </div>
                   </button>
@@ -80,8 +81,8 @@
   </button> -->
 
   <!-- Modal -->
-  
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -91,12 +92,10 @@
         <div class="modal-body">
           {{ apiData }}
         </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div> -->
+        
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -143,13 +142,45 @@ export default {
     },
     submitForm() {
 
+
+
       this.spinVisiblilty = true;
       axios.get('http://ip-api.com/json/24.48.0.1')
         .then(response => {
           console.log('Response:', response.data);
-          this.apiData = response.data;
           if (response.data.status == 'success') {
-           this.spinVisiblilty = false;
+            const locationString = `
+                country: "${response.data.country}",
+                countryCode: "${response.data.countryCode}",
+                region: "${response.data.region}",
+                regionName: "${response.data.regionName}",
+                city: "${response.data.city}",
+                zip: "${response.data.zip}",
+                lat: ${response.data.lat},
+                lon: ${response.data.lon}
+              `;
+            this.apiData = response.data.status;
+            this.$swal.fire({
+              title: this.apiData,
+              text: locationString,
+              $showClass: {
+                popup: `
+                animate__animated
+                animate__fadeInUp
+                animate__faster
+              `
+              },
+              $hideClass: {
+                popup: `
+                animate__animated
+                animate__fadeOutDown
+                animate__faster
+              `
+              }
+            });
+
+
+            this.spinVisiblilty = false;
           }
         })
         .catch(error => {
