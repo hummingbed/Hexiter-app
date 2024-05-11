@@ -39,7 +39,6 @@
                       <span class="visually-hidden">Loading...</span>
                     </div>
                   </button>
-                  <!-- <button class="btn bsb-btn-xl btn-danger" type="submit">Sign In</button> -->
                 </div>
               </div>
 
@@ -75,27 +74,6 @@
     </div>
   </div>
 
-  <!-- Button trigger modal -->
-  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button> -->
-
-  <!-- Modal -->
-
-  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Api Response</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          {{ apiData }}
-        </div>
-        
-      </div>
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -191,7 +169,7 @@ export default {
   },
   computed: {
     isFormValid() {
-      return this.email !== '' && this.password.length == 6;
+      return this.email !== '' && this.password.length >= 6;
     }
   },
 
